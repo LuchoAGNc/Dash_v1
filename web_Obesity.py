@@ -4,17 +4,6 @@ import pandas as pd
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
-with open('ran_for.pkl', 'rb') as ra:
-    ran_for = pickle.load(ra)
-
-with open('hist_grad.pkl', 'rb') as hi:
-    hist_grad = pickle.load(hi)
-
-with open('dec_cls.pkl', 'rb') as de:
-    dec_cls = pickle.load(de)
-
-with open('svc_m.pkl', 'rb') as svc:
-    svc_m = pickle.load(svc)
 
 df = pd.read_csv('ObesityDataNew.csv')
 
