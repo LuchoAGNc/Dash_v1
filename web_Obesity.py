@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def data_up():
     return pd.read_csv('ObesityDataNew.csv')
 
-st.set_page_config(page_title='Violencia intrafamiliar', layout='wide')
+st.set_page_config(page_title='Niveles de obesidad en personas', layout='wide')
 df = data_up()
 
 def grafP(c2):
