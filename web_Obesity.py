@@ -279,9 +279,14 @@ def main():
 
 
     elif choice == 'About':
-        st.subheader("About")
-
-    
+        cl1, cl2, cl3 = st.columns([1,4,1])
+        cl2.title("¿Quienes somos?")
+        cl2.subheader("Integrantes:")
+        cl2.write("Carlos Javier Saenz Orteg")
+        cl2.write("Leonel David Doria Cantero")
+        cl2.write("Luis Alfredo García Nisperuza")
+        cl2.write("Kevin Andres Anaya Correa")
+        cl2.write("Maria Angel Garcia Rodriguez")      
     
 
 if __name__ == '__main__':
