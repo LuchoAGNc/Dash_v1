@@ -51,8 +51,8 @@ def grafP(c2):
     indice = np.arange(len(grupos))
     fig, ax = plt.subplots(figsize=(16,8))
 
-    ax.bar(indice,  mayores, label='Mayores de edad', color="#80ced6")
-    ax.bar(indice, menores, label='Menores de edad', color = "#ffef96", bottom=mayores)
+    ax.bar(indice,  mayores, label='Mayores de edad', color="#5499C7")
+    ax.bar(indice, menores, label='Menores de edad', color = "#138D75", bottom=mayores)
     plt.xticks(indice, grupos, fontsize=12)
     plt.ylabel("Participanes",  fontsize=16)
     plt.xlabel("Grupos",  fontsize=16)
