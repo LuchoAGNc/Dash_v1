@@ -282,7 +282,7 @@ def main():
         cl1, cl2, cl3 = st.columns([1,4,1])
         cl2.title("¿Quienes somos?")
         cl2.subheader("Integrantes:")
-        cl2.write("Carlos Javier Saenz Orteg")
+        cl2.write("Carlos Javier Saenz Ortega")
         cl2.write("Leonel David Doria Cantero")
         cl2.write("Luis Alfredo García Nisperuza")
         cl2.write("Kevin Andres Anaya Correa")
