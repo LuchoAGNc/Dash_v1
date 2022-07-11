@@ -204,7 +204,7 @@ def grafFi(col3):
                                                                 markerfacecolor="red")
 
 
-    plt.title('RELACION OBESIDAD - ACTIVIDAD FÍSICA', 
+    plt.title('Relación obesidad - Actividad física', 
             loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
 
     plt.xlabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
