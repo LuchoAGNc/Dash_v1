@@ -198,7 +198,7 @@ def grafFi(col3):
     fig8, ax = plt.subplots(figsize = (14,8))
 
     df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(legend = 'reverse', 
-                                                                    color = '#138D75',
+                                                                    color = '#5499C7',
                                                                     marker = "o", 
                                                                     markersize=12,
                                                                 markerfacecolor="red")
