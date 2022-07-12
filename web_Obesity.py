@@ -184,7 +184,7 @@ def grafT(col3):
 def grafF(col2):
     fig7, ax = plt.subplots(figsize = (14,8))
 
-    df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#80ced6')
+    df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#138D75')
 
     plt.title('Relación obesidad - Consumo de agua', 
             loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
