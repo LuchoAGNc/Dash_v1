@@ -154,15 +154,7 @@ def grafF(col2):
     
     col2.write(fig7)    
 
-    #  df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#138D75')
 
-    #  plt.title('Relación obesidad - Consumo de agua', 
-    #          loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
-
-    #  plt.ylabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-    #  plt.xlabel('Consumo de agua promedio en litros', fontdict = {'fontsize':14, 'fontweight':'bold'})
-    #  plt.show()
-    #  col2.pyplot(fig7)
 
 # def grafFi(col3):
 #     fig8, ax = plt.subplots(figsize = (14,8))
@@ -183,7 +175,7 @@ def grafF(col2):
 
 def main():
 
-    menu = ["Datos", "Exploración", "About"]
+    menu = ["Datos", "Exploración", "Predicción", "About",]
     choice = st.sidebar.selectbox("Menu", menu)
 
     
@@ -247,6 +239,19 @@ def main():
         grafF(col2)
         # grafFi(col3)
 
+    elif choice == 'Predicción':
+        cl1, cl2, cl3 = st.columns([1,4,1])
+        cl2.title("Predicción - Niveles de obesidad en personas de México, Perú y Colombia.")
+        cl2.title('')
+        cl2.title('')
+        cl2.subheader("Ingrese los datos para realizar la prediccion de su tipo de peso:")
+        cl2.title('')
+        c1, c2, c3, c4 , c5, c6 = st.columns([1,2,2,2,2,1])
+        c2.selectbox("Genero:", {"Female", "Male"})
+        c3.slider("Edad:", min_value=5, max_value=120)
+        c4.selectbox("Familiar con sobrepeso ?", {"Si", "No"})
+        c5.selectbox("Consume alimentos ricos en calorias?", {"Si", "No"})
+        c2.button('Predecir')
 
     elif choice == 'About':
         cl1, cl2, cl3 = st.columns([1,4,1])
