@@ -12,6 +12,7 @@ st.set_page_config(page_title='Niveles de obesidad en personas', layout='wide')
 df = data_up()
 
 def grafP(c2):
+
     df_mayores = df[df['Edad']>=18]
     df_menores = df[df['Edad']<18]
 
@@ -19,198 +20,161 @@ def grafP(c2):
     df_mayores.insert(3,"Mayor_edad",'mayor',True)
 
     df_G = pd.concat([df_mayores, df_menores], axis=0)
-    grupos = list(df['Tipo_obesidad'].unique())
-
-    insuficiente = df_G[df_G['Tipo_obesidad'] == 'Peso_insuficiente']
-    normal = df_G[df_G['Tipo_obesidad'] == 'Peso_normal']
-    sobre_p1 = df_G[df_G['Tipo_obesidad'] == 'Sobrepeso_Nivel_I']
-    sobre_p2 = df_G[df_G['Tipo_obesidad'] == 'Sobrepeso_Nivel_II']
-    obesidad1 = df_G[df_G['Tipo_obesidad'] == 'Obesidad_Tipo_I']
-    obesidad2 = df_G[df_G['Tipo_obesidad'] == 'Obesidad_Tipo_II']
-    obesidad3 = df_G[df_G['Tipo_obesidad'] == 'Obesidad_Tipo_III']
-
-    mayores= [
-        len(normal[normal['Mayor_edad']=='mayor']),
-        len(sobre_p1[sobre_p1['Mayor_edad']=='mayor']),
-        len(sobre_p2[sobre_p2['Mayor_edad']=='mayor']),
-        len(obesidad1[obesidad1['Mayor_edad']=='mayor']),
-        len(insuficiente[insuficiente['Mayor_edad']=='mayor']),
-        len(obesidad2[obesidad2['Mayor_edad']=='mayor']),
-        len(obesidad3[obesidad3['Mayor_edad']=='mayor'])
-    ]
-
-    menores= [
-        len(normal[normal['Mayor_edad']=='menor']),
-        len(sobre_p1[sobre_p1['Mayor_edad']=='menor']),
-        len(sobre_p2[sobre_p2['Mayor_edad']=='menor']),
-        len(obesidad1[obesidad1['Mayor_edad']=='menor']),
-        len(insuficiente[insuficiente['Mayor_edad']=='menor']),
-        len(obesidad2[obesidad2['Mayor_edad']=='menor']),
-        len(obesidad3[obesidad3['Mayor_edad']=='menor'])
-    ]
-
-    indice = np.arange(len(grupos))
-    fig, ax = plt.subplots(figsize=(16,8))
-
-    ax.bar(indice,  mayores, label='Mayores de edad', color="#138D75")
-    ax.bar(indice, menores, label='Menores de edad', color = "#5499C7", bottom=mayores)
-    plt.xticks(indice, grupos, fontsize=12)
-    plt.ylabel("Participanes",  fontsize=16)
-    plt.xlabel("Grupos",  fontsize=16)
-    plt.title('Participantes por menor/mayor de edad', fontsize=20)
-    ax.legend()
-    c2.pyplot(fig)
-
-def grafS(tipo_trans, col2):
-    fig_1, ab = plt.subplots(figsize=(6,6))
-    bicicleta = df.loc[df.loc[:, 'Medio_transporte'] == 'Bike']
-    colores=["#9B59B6","#E74C3C","#148F77"]
-    ab.pie(pd.get_dummies(bicicleta['Tipo_obesidad']).sum(), labels=bicicleta['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True, colors=colores, textprops={'fontsize': 12})
-
-    fig_2, ac = plt.subplots(figsize=(5,6))
-    caminar = df.loc[df.loc[:, 'Medio_transporte'] == 'Walking']
-    colores=["#FFAB91","#E3F2FD","#B2DFDB","#FFCCBC","#FFF59D","#B39DDB"]
-    ac.pie(pd.get_dummies(caminar['Tipo_obesidad']).sum(), labels=caminar['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True, colors=colores, textprops={'fontsize': 12})
-        
-    fig_3, am = plt.subplots(figsize=(5,6))
-    moto = df.loc[df.loc[:, 'Medio_transporte'] == 'Motorbike']
-    colores=["#AB47BC","#1ABC9C","#85C1E9","#D4E6F1"]
-    am.pie(pd.get_dummies(moto['Tipo_obesidad']).sum(), labels=moto['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True,colors=colores, textprops={'fontsize': 12})
-
-
-    fig_4, aa = plt.subplots(figsize=(6,6))
-    automovil = df.loc[df.loc[:, 'Medio_transporte'] == 'Automobile']
-    colores=["#F8BBD0","#CE93D8","#EF9A9A","#9FA8DA","#D98880","#DC7633","#9575CD"]
-    aa.pie(pd.get_dummies(automovil['Tipo_obesidad']).sum(), labels=automovil['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True, colors=colores, textprops={'fontsize': 12})
-
-
-    fig_5, at = plt.subplots(figsize=(5,6))
-    transportePublico = df.loc[df.loc[:, 'Medio_transporte'] == 'Public_Transportation']
-    colores=["#2196F3","#FCE4EC","#F48FB1","#4DB6AC","#D98880","#B2DFDB","#D1C4E9"]
-    at.pie(pd.get_dummies(transportePublico['Tipo_obesidad']).sum(), labels=transportePublico['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True,colors=colores, textprops={'fontsize': 12})
-
-    if tipo_trans == 'Bike':
-        col2.pyplot(fig_1)
-    if tipo_trans == 'Walking':
-        col2.pyplot(fig_2)
-    if tipo_trans == 'Motorbike':
-        col2.pyplot(fig_3)
-    if tipo_trans == 'Automobile':
-        col2.pyplot(fig_4)
-    if tipo_trans == 'Public_Transportation':
-        col2.pyplot(fig_5)
-
-def grafT(col3):
-
-    grupos = list(df['Tipo_obesidad'].unique())
-
-    insuficiente = df[df['Tipo_obesidad'] == 'Peso_insuficiente']
-    normal = df[df['Tipo_obesidad'] == 'Peso_normal']
-    sobre_p1 = df[df['Tipo_obesidad'] == 'Sobrepeso_Nivel_I']
-    sobre_p2 = df[df['Tipo_obesidad'] == 'Sobrepeso_Nivel_II']
-    obesidad1 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_I']
-    obesidad2 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_II']
-    obesidad3 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_III']
-
-    Bike= [
-        len(normal[normal['Medio_transporte']=='Bike']),
-        len(sobre_p1[sobre_p1['Medio_transporte']=='Bike']),
-        len(sobre_p2[sobre_p2['Medio_transporte']=='Bike']),
-        len(obesidad1[obesidad1['Medio_transporte']=='Bike']),
-        len(insuficiente[insuficiente['Medio_transporte']=='Bike']),
-        len(obesidad2[obesidad2['Medio_transporte']=='Bike']),
-        len(obesidad3[obesidad3['Medio_transporte']=='Bike'])
-    ]
-
-    Walking= [
-        len(normal[normal['Medio_transporte']=='Walking']),
-        len(sobre_p1[sobre_p1['Medio_transporte']=='Walking']),
-        len(sobre_p2[sobre_p2['Medio_transporte']=='Walking']),
-        len(obesidad1[obesidad1['Medio_transporte']=='Walking']),
-        len(insuficiente[insuficiente['Medio_transporte']=='Walking']),
-        len(obesidad2[obesidad2['Medio_transporte']=='Walking']),
-        len(obesidad3[obesidad3['Medio_transporte']=='Walking'])
-    ]
-
-    Automobile= [
-        len(normal[normal['Medio_transporte']=='Automobile']),
-        len(sobre_p1[sobre_p1['Medio_transporte']=='Automobile']),
-        len(sobre_p2[sobre_p2['Medio_transporte']=='Automobile']),
-        len(obesidad1[obesidad1['Medio_transporte']=='Automobile']),
-        len(insuficiente[insuficiente['Medio_transporte']=='Automobile']),
-        len(obesidad2[obesidad2['Medio_transporte']=='Automobile']),
-        len(obesidad3[obesidad3['Medio_transporte']=='Automobile'])
-    ]
-
-    Motorbike= [
-        len(normal[normal['Medio_transporte']=='Motorbike']),
-        len(sobre_p1[sobre_p1['Medio_transporte']=='Motorbike']),
-        len(sobre_p2[sobre_p2['Medio_transporte']=='Motorbike']),
-        len(obesidad1[obesidad1['Medio_transporte']=='Motorbike']),
-        len(insuficiente[insuficiente['Medio_transporte']=='Motorbike']),
-        len(obesidad2[obesidad2['Medio_transporte']=='Motorbike']),
-        len(obesidad3[obesidad3['Medio_transporte']=='Motorbike'])
-    ]
-
-    Public_Transportation= [
-        len(normal[normal['Medio_transporte']=='Public_Transportation']),
-        len(sobre_p1[sobre_p1['Medio_transporte']=='Public_Transportation']),
-        len(sobre_p2[sobre_p2['Medio_transporte']=='Public_Transportation']),
-        len(obesidad1[obesidad1['Medio_transporte']=='Public_Transportation']),
-        len(insuficiente[insuficiente['Medio_transporte']=='Public_Transportation']),
-        len(obesidad2[obesidad2['Medio_transporte']=='Public_Transportation']),
-        len(obesidad3[obesidad3['Medio_transporte']=='Public_Transportation'])
-    ]
-
-    indice = np.arange(len(grupos))
-    fig6, ax = plt.subplots(figsize=(14,8))
-
-    ax.bar(indice, Motorbike, label='Moto', color="#5499C7")
     
-    ax.bar(indice, Bike, label='Bicicleta', color = "#3498DB", bottom=np.array(Motorbike))
-
-    ax.bar(indice, Walking, label='Caminata', color = "#1ABC9C", bottom=np.array(Bike))
-
-    ax.bar(indice, Automobile, label='Automovil', color = "#27AE60",  bottom=np.array(Walking))
-
-    ax.bar(indice, Public_Transportation, label='Transporte Publico', color = "#138D75", bottom=np.array(Motorbike)+np.array(Bike)+np.array(Walking)+np.array(Automobile))
-
-    plt.xticks(indice, grupos)
-    plt.ylabel("Medio de transporte")
-    plt.xlabel("Tipo de obesidad")
-    plt.title('Cantidad de Personas que Utilizan un Determinado Medio de Transporte')
-    ax.legend()
-    col3.pyplot(fig6)
-
-def grafF(col2):
-    fig7, ax = plt.subplots(figsize = (14,8))
-
-    df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#138D75')
-
-    plt.title('Relación obesidad - Consumo de agua', 
-            loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
-
-    plt.ylabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-    plt.xlabel('Consumo de agua promedio en litros', fontdict = {'fontsize':14, 'fontweight':'bold'})
-    plt.show()
-    col2.pyplot(fig7)
-
-def grafFi(col3):
-    fig8, ax = plt.subplots(figsize = (14,8))
-
-    df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(legend = 'reverse', 
-                                                                    color = '#5499C7',
-                                                                    marker = "o", 
-                                                                    markersize=12,
-                                                                markerfacecolor="red")
+    fig = px.bar(df_G, x="Tipo_obesidad", y="T_uso_dispositivos", color="Mayor_edad", barmode = 'stack', color_discrete_map={'mayor':'#53BF9D', 'menor':'#F94C66'})
+    c2.write(fig)
 
 
-    plt.title('Relación obesidad - Actividad física', 
-            loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
+# def grafS(tipo_trans, col2):
+#     fig_1, ab = plt.subplots(figsize=(6,6))
+#     bicicleta = df.loc[df.loc[:, 'Medio_transporte'] == 'Bike']
+#     colores=["#9B59B6","#E74C3C","#148F77"]
+#     ab.pie(pd.get_dummies(bicicleta['Tipo_obesidad']).sum(), labels=bicicleta['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True, colors=colores, textprops={'fontsize': 12})
 
-    plt.xlabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-    plt.ylabel('Tiempo de actividad física', fontdict = {'fontsize':14, 'fontweight':'bold'})
-    col3.pyplot(fig8)
+#     fig_2, ac = plt.subplots(figsize=(5,6))
+#     caminar = df.loc[df.loc[:, 'Medio_transporte'] == 'Walking']
+#     colores=["#FFAB91","#E3F2FD","#B2DFDB","#FFCCBC","#FFF59D","#B39DDB"]
+#     ac.pie(pd.get_dummies(caminar['Tipo_obesidad']).sum(), labels=caminar['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True, colors=colores, textprops={'fontsize': 12})
+        
+#     fig_3, am = plt.subplots(figsize=(5,6))
+#     moto = df.loc[df.loc[:, 'Medio_transporte'] == 'Motorbike']
+#     colores=["#AB47BC","#1ABC9C","#85C1E9","#D4E6F1"]
+#     am.pie(pd.get_dummies(moto['Tipo_obesidad']).sum(), labels=moto['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True,colors=colores, textprops={'fontsize': 12})
+
+
+#     fig_4, aa = plt.subplots(figsize=(6,6))
+#     automovil = df.loc[df.loc[:, 'Medio_transporte'] == 'Automobile']
+#     colores=["#F8BBD0","#CE93D8","#EF9A9A","#9FA8DA","#D98880","#DC7633","#9575CD"]
+#     aa.pie(pd.get_dummies(automovil['Tipo_obesidad']).sum(), labels=automovil['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True, colors=colores, textprops={'fontsize': 12})
+
+
+#     fig_5, at = plt.subplots(figsize=(5,6))
+#     transportePublico = df.loc[df.loc[:, 'Medio_transporte'] == 'Public_Transportation']
+#     colores=["#2196F3","#FCE4EC","#F48FB1","#4DB6AC","#D98880","#B2DFDB","#D1C4E9"]
+#     at.pie(pd.get_dummies(transportePublico['Tipo_obesidad']).sum(), labels=transportePublico['Tipo_obesidad'].unique(), autopct='%1.1f%%', shadow=True,colors=colores, textprops={'fontsize': 12})
+
+#     if tipo_trans == 'Bike':
+#         col2.pyplot(fig_1)
+#     if tipo_trans == 'Walking':
+#         col2.pyplot(fig_2)
+#     if tipo_trans == 'Motorbike':
+#         col2.pyplot(fig_3)
+#     if tipo_trans == 'Automobile':
+#         col2.pyplot(fig_4)
+#     if tipo_trans == 'Public_Transportation':
+#         col2.pyplot(fig_5)
+
+# def grafT(col3):
+
+#     grupos = list(df['Tipo_obesidad'].unique())
+
+#     insuficiente = df[df['Tipo_obesidad'] == 'Peso_insuficiente']
+#     normal = df[df['Tipo_obesidad'] == 'Peso_normal']
+#     sobre_p1 = df[df['Tipo_obesidad'] == 'Sobrepeso_Nivel_I']
+#     sobre_p2 = df[df['Tipo_obesidad'] == 'Sobrepeso_Nivel_II']
+#     obesidad1 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_I']
+#     obesidad2 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_II']
+#     obesidad3 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_III']
+
+#     Bike= [
+#         len(normal[normal['Medio_transporte']=='Bike']),
+#         len(sobre_p1[sobre_p1['Medio_transporte']=='Bike']),
+#         len(sobre_p2[sobre_p2['Medio_transporte']=='Bike']),
+#         len(obesidad1[obesidad1['Medio_transporte']=='Bike']),
+#         len(insuficiente[insuficiente['Medio_transporte']=='Bike']),
+#         len(obesidad2[obesidad2['Medio_transporte']=='Bike']),
+#         len(obesidad3[obesidad3['Medio_transporte']=='Bike'])
+#     ]
+
+#     Walking= [
+#         len(normal[normal['Medio_transporte']=='Walking']),
+#         len(sobre_p1[sobre_p1['Medio_transporte']=='Walking']),
+#         len(sobre_p2[sobre_p2['Medio_transporte']=='Walking']),
+#         len(obesidad1[obesidad1['Medio_transporte']=='Walking']),
+#         len(insuficiente[insuficiente['Medio_transporte']=='Walking']),
+#         len(obesidad2[obesidad2['Medio_transporte']=='Walking']),
+#         len(obesidad3[obesidad3['Medio_transporte']=='Walking'])
+#     ]
+
+#     Automobile= [
+#         len(normal[normal['Medio_transporte']=='Automobile']),
+#         len(sobre_p1[sobre_p1['Medio_transporte']=='Automobile']),
+#         len(sobre_p2[sobre_p2['Medio_transporte']=='Automobile']),
+#         len(obesidad1[obesidad1['Medio_transporte']=='Automobile']),
+#         len(insuficiente[insuficiente['Medio_transporte']=='Automobile']),
+#         len(obesidad2[obesidad2['Medio_transporte']=='Automobile']),
+#         len(obesidad3[obesidad3['Medio_transporte']=='Automobile'])
+#     ]
+
+#     Motorbike= [
+#         len(normal[normal['Medio_transporte']=='Motorbike']),
+#         len(sobre_p1[sobre_p1['Medio_transporte']=='Motorbike']),
+#         len(sobre_p2[sobre_p2['Medio_transporte']=='Motorbike']),
+#         len(obesidad1[obesidad1['Medio_transporte']=='Motorbike']),
+#         len(insuficiente[insuficiente['Medio_transporte']=='Motorbike']),
+#         len(obesidad2[obesidad2['Medio_transporte']=='Motorbike']),
+#         len(obesidad3[obesidad3['Medio_transporte']=='Motorbike'])
+#     ]
+
+#     Public_Transportation= [
+#         len(normal[normal['Medio_transporte']=='Public_Transportation']),
+#         len(sobre_p1[sobre_p1['Medio_transporte']=='Public_Transportation']),
+#         len(sobre_p2[sobre_p2['Medio_transporte']=='Public_Transportation']),
+#         len(obesidad1[obesidad1['Medio_transporte']=='Public_Transportation']),
+#         len(insuficiente[insuficiente['Medio_transporte']=='Public_Transportation']),
+#         len(obesidad2[obesidad2['Medio_transporte']=='Public_Transportation']),
+#         len(obesidad3[obesidad3['Medio_transporte']=='Public_Transportation'])
+#     ]
+
+#     indice = np.arange(len(grupos))
+#     fig6, ax = plt.subplots(figsize=(14,8))
+
+#     ax.bar(indice, Motorbike, label='Moto', color="#5499C7")
+    
+#     ax.bar(indice, Bike, label='Bicicleta', color = "#3498DB", bottom=np.array(Motorbike))
+
+#     ax.bar(indice, Walking, label='Caminata', color = "#1ABC9C", bottom=np.array(Bike))
+
+#     ax.bar(indice, Automobile, label='Automovil', color = "#27AE60",  bottom=np.array(Walking))
+
+#     ax.bar(indice, Public_Transportation, label='Transporte Publico', color = "#138D75", bottom=np.array(Motorbike)+np.array(Bike)+np.array(Walking)+np.array(Automobile))
+
+#     plt.xticks(indice, grupos)
+#     plt.ylabel("Medio de transporte")
+#     plt.xlabel("Tipo de obesidad")
+#     plt.title('Cantidad de Personas que Utilizan un Determinado Medio de Transporte')
+#     ax.legend()
+#     col3.pyplot(fig6)
+
+# def grafF(col2):
+#     fig7, ax = plt.subplots(figsize = (14,8))
+
+#     df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#138D75')
+
+#     plt.title('Relación obesidad - Consumo de agua', 
+#             loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
+
+#     plt.ylabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+#     plt.xlabel('Consumo de agua promedio en litros', fontdict = {'fontsize':14, 'fontweight':'bold'})
+#     plt.show()
+#     col2.pyplot(fig7)
+
+# def grafFi(col3):
+#     fig8, ax = plt.subplots(figsize = (14,8))
+
+#     df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(legend = 'reverse', 
+#                                                                     color = '#5499C7',
+#                                                                     marker = "o", 
+#                                                                     markersize=12,
+#                                                                 markerfacecolor="red")
+
+
+#     plt.title('Relación obesidad - Actividad física', 
+#             loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
+
+#     plt.xlabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+#     plt.ylabel('Tiempo de actividad física', fontdict = {'fontsize':14, 'fontweight':'bold'})
+#     col3.pyplot(fig8)
 
 def main():
 
@@ -256,8 +220,8 @@ def main():
         tipo_trans_options = df['Medio_transporte'].unique().tolist()
         tipo_trans = c2.selectbox("Elija el tipo de transporte que desea visualizar", tipo_trans_options)
         c2.subheader('')
-        grafS(tipo_trans, col2)
-        grafT(col3)
+        # grafS(tipo_trans, col2)
+        # grafT(col3)
         co2.write("""Basados en los datos reportados através de las gráficas podemos concluir que un transporte usual como la bicicleta 
         de las personas registradas utilizan(51.7%) poseen un peso normal  y el resto de los datos distribuidos entre las personas 
         con obesidad tipo 2 y sobre peso nivel 1. En cambio si observamos la gráfica de las personas que caminan y como se relaciona con su peso el porcentaje 
@@ -275,8 +239,8 @@ def main():
         cl2.title('')
         cl2.subheader('¿Como influye en el peso de una persona el hecho de tomar o no agua y realizar actividades físicas?')
         c2.subheader('')
-        grafF(col2)
-        grafFi(col3)
+        # grafF(col2)
+        # grafFi(col3)
 
 
     elif choice == 'About':
