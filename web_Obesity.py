@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.express as px
+
 
 @st.cache(allow_output_mutation=True)
 def data_up():
