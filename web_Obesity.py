@@ -146,18 +146,23 @@ def grafP(c2):
 #     ax.legend()
 #     col3.pyplot(fig6)
 
-# def grafF(col2):
-#     fig7, ax = plt.subplots(figsize = (14,8))
 
-#     df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#138D75')
+def grafF(col2):
+    fig7 = px.bar( df.groupby(["Tipo_obesidad"]).mean().reset_index().sort_values(by="Consumo_agua", ascending=False), 
+    x ="Consumo_agua", y ="Tipo_obesidad", barmode = 'stack', color_discrete_sequence=['#53BF9D'], 
+    orientation='h')
+    
+    col2.write(fig7)    
 
-#     plt.title('Relación obesidad - Consumo de agua', 
-#             loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
+    #  df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(kind = 'barh', legend = 'reverse', color = '#138D75')
 
-#     plt.ylabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-#     plt.xlabel('Consumo de agua promedio en litros', fontdict = {'fontsize':14, 'fontweight':'bold'})
-#     plt.show()
-#     col2.pyplot(fig7)
+    #  plt.title('Relación obesidad - Consumo de agua', 
+    #          loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
+
+    #  plt.ylabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+    #  plt.xlabel('Consumo de agua promedio en litros', fontdict = {'fontsize':14, 'fontweight':'bold'})
+    #  plt.show()
+    #  col2.pyplot(fig7)
 
 # def grafFi(col3):
 #     fig8, ax = plt.subplots(figsize = (14,8))
@@ -239,7 +244,7 @@ def main():
         cl2.title('')
         cl2.subheader('¿Como influye en el peso de una persona el hecho de tomar o no agua y realizar actividades físicas?')
         c2.subheader('')
-        # grafF(col2)
+        grafF(col2)
         # grafFi(col3)
 
 
