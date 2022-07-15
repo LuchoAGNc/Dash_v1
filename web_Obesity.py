@@ -255,7 +255,7 @@ def main():
         c3.selectbox("Merienda ?", {"No", "Algunas veces", "Frecuentemente", "Siempre"})
         c4.selectbox("Fuma ?", {"Si", "No"})
         c5.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
-        c2.selectbox("Sigues tu consumo de calorias", {"Si", "No"})
+        c2.selectbox("Sigues tu consumo de calorias?", {"Si", "No"})
         c3.slider("Tiempo de uso en dispositivos electronicos", min_value=0, max_value=3)
         c4.selectbox("Consume alcohol ?", {"No", "Algunas veces", "Frecuentemente", "Siempre"})
         c5.selectbox("Que medio de transporte usa?", {"Bicicleta", "Caminar", "Moto", "Automovil", "Transporte Publico"})
