@@ -246,7 +246,7 @@ def main():
         cl2.title('')
         cl2.subheader("Ingrese los datos para realizar la prediccion de su tipo de peso:")
         cl2.title('')
-        c1, c2, c3, c4 , c5, c6 = st.columns([1,2,2,2,3,1])
+        c1, c2, c3, c4 , c5, c6 = st.columns([1,2,2,2,2,1])
         c2.selectbox("Genero:", {"Femenino ", "Masculino"})
         c3.slider("Edad:", min_value=5, max_value=120)
         c4.selectbox("Familiar con sobrepeso ?", {"Si", "No"})
