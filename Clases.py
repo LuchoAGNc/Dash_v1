@@ -16,6 +16,7 @@ class InputModelo(BM):
     Meriendas: Literal['Sometimes', 'Frequently', 'Always', 'no']
     Fumador: Literal["yes", "no"]
     F_actvidad_fisica: float = Field( ge=0, le=3, description="Frecuencia con la que realiza actividad fisica")
+    T_uso_dispositivos: float = Field(ge=0, le=3, description="Tiempo de uso de dispositivo elctronicos")
     Consumo_calorias: Literal["yes", "no"]
     C_alcohol: Literal['no', 'Sometimes', 'Frequently', 'Always']
     Medio_transporte: Literal['Public_Transportation', 'Walking', 'Automobile', 'Motorbike','Bike']
