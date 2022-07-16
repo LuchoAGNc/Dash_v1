@@ -220,7 +220,7 @@ def main():
         tipo_Fumador_options = df['Fumador'].unique().tolist()
         c4.selectbox("Fuma ?", tipo_Fumador_options)
         c5.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
-        tipo_Consumo_calorias_options = df['Consmuo_calorias'].unique().tolist()
+        tipo_Consumo_calorias_options = df['Consumo_calorias'].unique().tolist()
         c2.selectbox("Sigues tu consumo de calorias?", tipo_Consumo_calorias_options)
         c3.slider("Tiempo de uso en dispositivos electronicos", min_value=0, max_value=3)
         tipo_C_alcohol_options = df['C_alcohol'].unique().tolist()
