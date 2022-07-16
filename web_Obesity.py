@@ -192,6 +192,7 @@ def main():
         con sobre peso nivel 1 y la obesidad tipo 1. Por lo tanto , podemos decir que este no es un medio favorecedor en cuestión de 
         transporte para los ciudadanos que presentan cualquier tipo de obesidad o sobrepeso.""")
         co1.title('')
+        co1.title('')
 
         col1, col2, col3, col4 = st.columns([1,5,5,1])
         col1.title('')
