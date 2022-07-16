@@ -34,7 +34,6 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
 
     pred = requests.post(url=url_api, json=json.loads(data_cleaned),headers={"Content-Type": "application/json"}).text
     pred_df = json.loads(pred)
-    print(pred_df)
     return pred_df
 
 def grafP(c2):
@@ -252,7 +251,7 @@ def main():
             prediccion = hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_Consumo_verduras, N_comidad,
             F_actividad_fisicas, Consumo_calorias_, T_dispositivos, C_Alcohol, Medio_transporte)
 
-            st.subheader("El pronóstico de casos de su  tipo de obesidad es : {}", prediccion)
+            st.subheader(prediccion)
 
     elif choice == 'About':
         cl1, cl2, cl3 = st.columns([1,4,1])
