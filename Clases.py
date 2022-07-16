@@ -184,7 +184,7 @@ class APIModelBackEnd:
             [
                 x
                 for x in data_predict.columns
-                if ((str(C_alcohol) in x) and (x.startswith("C_alcohol")))
+                if ((str(C_alcohol) in x) and (x.startswith("C_alcohol_")))
             ]
         ] = 1
         
@@ -192,7 +192,7 @@ class APIModelBackEnd:
             [
                 x
                 for x in data_predict.columns
-                if ((str(Medio_transporte) in x) and (x.startswith("Medio_transporte")))
+                if ((str(Medio_transporte) in x) and (x.startswith("Medio_transporte_")))
             ]
         ] = 1
 
