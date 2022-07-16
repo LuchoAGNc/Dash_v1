@@ -32,9 +32,8 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
 
     url_api = "https://team5-diplo.herokuapp.com/predict"
 
-    pred = requests.post(url=url_api, data=data_cleaned).text
-    with open(pred, 'r', encoding='utf-8') as f:
-        pred_df = json.load(f)
+    pred = requests.post(url=url_api, json=json.loads(data_cleaned),headers={"Content-Type": "application/json"}).text
+    pred_df = json.loads(pred)
 
     return pred_df
 
