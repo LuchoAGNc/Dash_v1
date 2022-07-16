@@ -149,11 +149,8 @@ def grafF(col2):
 
 
 def grafFi(col3):
-    df1 = df.rename({'Tipo_obesidad': 'Tipo de Obesidad','F_actvidad_fisica': 'Tiempo de Actividad Física'}, axis=1)
-    df = df1
-
     fig4 = px.line(df.groupby(["Tipo de Obesidad"]).mean().reset_index(),
-        x="Tipo de Obesidad", y="Tiempo de Actividad Física", markers=True)
+        x="Tipo_obesidad", y="F_actvidad_fisica", markers=True)
     col3.write(fig4)
 
 def main():
