@@ -180,14 +180,16 @@ def main():
         #Meriendas -> Consumo de alimentos entre comidas.
         #Fumador -> Si fuma (respuesta verdadera o falso, ósea un valor booleano)
         #Consumo_agua-> Consumo de agua al día
-        #Consumo_calorias -> Seguimiento de consumo de calorías (tu consumo de calorías, con respuesta de si 
-        o no ósea un valor booleano
+        #Consumo_calorias -> Seguimiento de consumo de calorías (tu consumo de calorías, con 
+        respuesta de si o no ósea un valor booleano
         #F_actividad_fisica -> Frecuencia de actividad física
         #T_usos_dispositivos -> Tiempo de uso de dispositivos electrónicos
         #C_alcohol -> Si consume alcohol (no, algunas veces, frecuentemente o siempre)
-        #Medio_transporte -> Transporte utilizado (automóvil, motocicleta, bicicleta, transporte publicó, caminando)
-        #Tipo_obesidad -> Este valor se crea en base a los demás y consta de lo siguiente (peso_insuficiente, peso_normal, 
-        sobrepeso_nivel1, sobrepeso_nivel2, obesidad_tipo1, obesidad_tipo2, obesidad_tipo3)"""
+        #Medio_transporte -> Transporte utilizado (automóvil, motocicleta, bicicleta, transporte
+        publicó, caminando)
+        #Tipo_obesidad -> Este valor se crea en base a los demás y consta de lo siguiente 
+        (peso_insuficiente, peso_normal, sobrepeso_nivel1, sobrepeso_nivel2, obesidad_tipo1, 
+        obesidad_tipo2, obesidad_tipo3)"""
         col2.text(code)
         c2.title('')
 
@@ -211,15 +213,7 @@ def main():
         c2.subheader('')
         co2.subheader('Medio de Transporte Utilizado Segun su Peso')
         grafS(co2)
-        co2.write("""Basados en los datos reportados através de las gráficas podemos concluir que un transporte usual como la bicicleta 
-        de las personas registradas utilizan(51.7%) poseen un peso normal  y el resto de los datos distribuidos entre las personas 
-        con obesidad tipo 2 y sobre peso nivel 1. En cambio si observamos la gráfica de las personas que caminan y como se relaciona con su peso el porcentaje 
-        connotativo esta dado por las personas que sufren sobre peso nivel 2 , seguido por la obesidad tipo 1; 
-        solo la minoría representada en un 3.6% tienen un peso normal.""")
-        co2.write("""En medios terrestres como la moto existe mucho contraste con las 
-        personas de peso normal (54.5%), el (27.3%) que figuran las personas con sobre peso nivel 1 y el (9.1%) que comparten las Personas 
-        con sobre peso nivel 1 y la obesidad tipo 1. Por lo tanto , podemos decir que este no es un medio favorecedor en cuestión de 
-        transporte para los ciudadanos que presentan cualquier tipo de obesidad o sobrepeso.""")
+        
 
         col1, col2, col3, col4 = st.columns([1,8,8,1])
         col1.title('')
@@ -263,7 +257,6 @@ def main():
         Meriendas_ = c4.selectbox("Merienda ?", tipo_Meriendas_options)
         tipo_Fumador_options = df['Fumador'].unique().tolist()
         Fumador_ = c5.selectbox("Fuma ?", tipo_Fumador_options)
-
 
         F_actividad_fisicas = c2.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
         tipo_Consumo_calorias_options = df['Consumo_calorias'].unique().tolist()
