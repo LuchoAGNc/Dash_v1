@@ -61,7 +61,7 @@ class APIModelBackEnd:
         self.C_alcohol = C_alcohol
         self.Medio_transporte = Medio_transporte
     
-    def _load_model(self, model_filename: str = "random_m.pkl"):
+    def _load_model(self, model_filename:str = "random_m.pkl"):
         self.model = joblib.load(model_filename)
 
     def _preparar_datos(self):
@@ -170,8 +170,7 @@ class APIModelBackEnd:
     def predecir(self, y_name="Tipo_obesidad"):
         self._load_model()
         x = self._preparar_datos()
-        prediction = pd.DataFrame(self.model.predict(x)).rename(
+        prediction = pd.DataFrame(self.model.predict_proba(x)[:, 1]).rename(
             columns={0: y_name}
         )
-        prediction[y_name]=prediction[y_name].apply(lambda x: 0 if x<0 else int(x))
         return prediction.to_dict(orient="records")
