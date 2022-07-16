@@ -34,7 +34,7 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
 
     pred = requests.post(url=url_api, json=json.loads(data_cleaned),headers={"Content-Type": "application/json"}).text
     pred_df = json.loads(pred)
-    return pred_df[0]
+    return pred_df
 
 def grafP(c2):
     menores =  [
