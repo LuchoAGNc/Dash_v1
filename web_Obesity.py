@@ -175,16 +175,12 @@ def main():
         mayores índices de riesgos para la salud, en el caso de la población menor de edad, la obesidad tipo I y II son más comunes, 
         donde la primera es más frecuente que la segunda.""")
 
-        cl1, cl2, cl3 = st.columns([1,4,1])
-        c1, c2, c3, = st.columns([1,1,3])
-        col1, col2, col4 = st.columns([1,3,1])
         co1, co2, co3 = st.columns([1,8,1])
         
         c2.subheader('')
         # tipo_trans_options = df['Medio_transporte'].unique().tolist()
         # tipo_trans = c2.selectbox("Elija el tipo de transporte que desea visualizar", tipo_trans_options)
-        c2.subheader('Medio de Transporte Utilizado Segun su Peso')
-        c2.subheader('')
+        co2.subheader('Medio de Transporte Utilizado Segun su Peso')
         grafS(col2)
         co2.write("""Basados en los datos reportados através de las gráficas podemos concluir que un transporte usual como la bicicleta 
         de las personas registradas utilizan(51.7%) poseen un peso normal  y el resto de los datos distribuidos entre las personas 
