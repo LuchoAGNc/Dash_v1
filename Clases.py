@@ -125,7 +125,7 @@ class APIModelBackEnd:
                 "Medio_transporte_Moto",
                 "Medio_transporte_Transporte_Publico",
             ],
-            data=[[Edad, F_Consumo_verduras, F_Consumo_verduras, T_uso_dispositivos, *Generos, *Historial_familiares, 
+            data=[[Edad, F_Consumo_verduras, F_Consumo_verduras, T_uso_dispositivos, N_comidas, F_actividad_fisica, *Generos, *Historial_familiares, 
             *C_ricos_calorias, *Meriendass, *Fumadors, *Consumos_calorias, *C_alcoholes, *Medio_transportes]],
         )
         
@@ -158,7 +158,7 @@ class APIModelBackEnd:
             [
                 x
                 for x in data_predict.columns
-                if ((str(N_comidas) in x) and (x.startswith("Meriendas_")))
+                if ((str(Meriendas) in x) and (x.startswith("Meriendas_")))
             ]
         ] = 1
 
@@ -166,7 +166,7 @@ class APIModelBackEnd:
             [
                 x
                 for x in data_predict.columns
-                if ((str(F_actividad_fisica) in x) and (x.startswith("Fumador_")))
+                if ((str(Fumador) in x) and (x.startswith("Fumador_")))
             ]
         ] = 1
 
