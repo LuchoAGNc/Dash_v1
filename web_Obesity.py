@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import requests
+import json
 from plotly.subplots import make_subplots
 
 
@@ -31,10 +32,9 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
 
     url_api = "https://team5-diplo.herokuapp.com/predict"
 
-    pred = requests.post(url=url_api, data=data_cleaned).text
-
+    pred = requests.post(url=url_api, json=json.loads(data_cleaned),headers={"Content-Type": "application/json"}).text
     pred_df = pd.read_json(pred)
-    return pred_df
+    return pred_df[0]
 
 def grafP(c2):
     menores =  [
@@ -237,14 +237,14 @@ def main():
         C_rico_calorias_ = c5.selectbox("Consume alimentos ricos en calorias?", tipo_C_rico_calorias_options)
         F_Consumo_verduras = c2.slider("Frecuencia en concumo de verduras:", min_value=1, max_value=3)
         N_comidad = c3.slider("Numero de comidas", min_value=1, max_value=8)
-        F_actividad_fisicas = c2.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
+        F_actividad_fisicas = c4.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
         tipo_Consumo_calorias_options = df['Consumo_calorias'].unique().tolist()
-        Consumo_calorias_ = c3.selectbox("Sigues tu consumo de calorias?", tipo_Consumo_calorias_options)
-        T_dispositivos = c4.slider("Tiempo de uso en dispositivos electronicos", min_value=0, max_value=3)
+        Consumo_calorias_ = c5.selectbox("Sigues tu consumo de calorias?", tipo_Consumo_calorias_options)
+        T_dispositivos = c2.slider("Tiempo de uso en dispositivos electronicos", min_value=0, max_value=3)
         tipo_C_alcohol_options = df['C_alcohol'].unique().tolist()
-        C_Alcohol = c5.selectbox("Consume alcohol ?", tipo_C_alcohol_options)
+        C_Alcohol = c3.selectbox("Consume alcohol ?", tipo_C_alcohol_options)
         tipo_Medio_transporte_options = df['Medio_transporte'].unique().tolist()
-        Medio_transporte = c2.selectbox("Que medio de transporte usa?", tipo_Medio_transporte_options)
+        Medio_transporte = c4.selectbox("Que medio de transporte usa?", tipo_Medio_transporte_options)
         boton_predecir = c2.button('Predecir')
 
         if boton_predecir:

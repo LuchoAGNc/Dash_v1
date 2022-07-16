@@ -8,7 +8,7 @@ import pandas as pd
 class InputModelo(BM):
         
     Genero: Literal["Femenino", "Masculino"]
-    Edad: int = Field( ge=0, description="Edad de la persona")
+    Edad: int = Field( ge=0, le=120, description="Edad de la persona")
     Historial_familiar: Literal["Si", "No"]
     C_rico_calorias: Literal["Si", "No"]
     F_Consumo_verduras: int = Field( ge=1, le=3, description="Frecuencia con la que come verduras")
@@ -171,7 +171,7 @@ class APIModelBackEnd:
                 if ((str(Medio_transporte) in x) and (x.startswith("Medio_transporte")))
             ]
         ] = 1
-        
+
         return data_predict
 
     def predecir(self, y_name="Tipo_obesidad"):
