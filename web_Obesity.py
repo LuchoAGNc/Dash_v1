@@ -23,8 +23,8 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
                      "F_Consumo_verduras": F_Consumo_verduras,
                      "N_comidas": N_comidad,
                      "F_actvidad_fisica": F_actividad_fisicas,
-                     "T_uso_dispositivos": Consumo_calorias_,
-                     "Consumo_calorias": T_dispositivos,
+                     "Consumo_calorias": Consumo_calorias_,
+                     "T_uso_dispositivos": T_dispositivos,
                      "C_alcohol": C_Alcohol,
                      "Medio_transporte": Medio_transporte}]
 
