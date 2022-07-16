@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import requests
-import json
 from plotly.subplots import make_subplots
 
 
@@ -32,8 +31,8 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
 
     url_api = "https://team5-diplo.herokuapp.com/predict"
 
-    pred = requests.post(url=url_api, json=json.loads(data_cleaned),headers={"Content-Type": "application/json"}).text
-    pred_df = json.loads(pred)
+    pred = requests.post(url=url_api, data=data_cleaned).text
+    pred_df = pd.read_json(pred)
     return pred_df
 
 def grafP(c2):
