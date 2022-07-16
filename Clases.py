@@ -170,7 +170,7 @@ class APIModelBackEnd:
     def predecir(self, y_name="Tipo_obesidad"):
         self._load_model()
         x = self._preparar_datos()
-        prediction = pd.DataFrame(self.model.predict_proba(x)[:, 1]).rename(
+        prediction = pd.DataFrame(self.model.predict(x)).rename(
             columns={0: y_name}
         )
         return prediction.to_dict(orient="records")

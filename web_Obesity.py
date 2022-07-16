@@ -140,30 +140,21 @@ def grafS(co2):
 
 
 def grafF(col2):
-    fig7 = px.bar( df.groupby(["Tipo_obesidad"]).mean().reset_index().sort_values(by="Consumo_agua", ascending=False), 
+    fig3 = px.bar( df.groupby(["Tipo_obesidad"]).mean().reset_index().sort_values(by="Consumo_agua", ascending=False), 
     x ="Consumo_agua", y ="Tipo_obesidad", barmode = 'stack', color_discrete_sequence=['#53BF9D'], 
     orientation='h')
     
-    col2.write(fig7)    
+    col2.write(fig3)    
 
 
 
-# def grafFi(col3):
-#     fig8, ax = plt.subplots(figsize = (14,8))
+def grafFi(col3):
+    df1 = df.rename({'Tipo_obesidad': 'Tipo de Obesidad','F_actvidad_fisica': 'Tiempo de Actividad Física'}, axis=1)
+    df = df1
 
-#     df.groupby('Tipo_obesidad')['F_actvidad_fisica'].mean().plot(legend = 'reverse', 
-#                                                                     color = '#5499C7',
-#                                                                     marker = "o", 
-#                                                                     markersize=12,
-#                                                                 markerfacecolor="red")
-
-
-#     plt.title('Relación obesidad - Actividad física', 
-#             loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:red'})
-
-#     plt.xlabel("Tipo de obesidad", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-#     plt.ylabel('Tiempo de actividad física', fontdict = {'fontsize':14, 'fontweight':'bold'})
-#     col3.pyplot(fig8)
+    fig4 = px.line(df.groupby(["Tipo de Obesidad"]).mean().reset_index(),
+        x="Tipo de Obesidad", y="Tiempo de Actividad Física", markers=True)
+    col3.write(fig4)
 
 def main():
 
@@ -219,7 +210,18 @@ def main():
         col1.title('')
         col2.subheader('¿Cual es el promedio de litros de agua consumida por categorías de obesidad ?')
         grafF(col2)
-        # grafFi(col3)
+        col2.write("""
+            En la grafica se observa el consumo de agua por litro no afecta de que allá una mayor categoría o una menor categoría de obesidad 
+            el consumo de agua siempre se mantiene en promedio de uno y dos que es lo normal que debe consumir una persona, osea que el el consumo 
+            de agua no afecta la disminución 
+            o el aumento de masa""")
+        col3.subheader('Relación Obesidad - Actividad Física')
+        grafFi(col3)
+        col3.write("""
+            De la gráfica anterior se puede inferir que existe una relación directa entre el tipo de obesidad y la realización de actividad 
+            física, debido a que entre más actividad física realicen las personas mejor va a estar su condición de peso o viceversa a menor 
+            actividad física más obesidad va a tener.
+        """)
 
     elif choice == 'Predicción':
         cl1, cl2, cl3 = st.columns([1,4,1])
