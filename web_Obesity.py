@@ -180,16 +180,14 @@ def main():
         #Meriendas -> Consumo de alimentos entre comidas.
         #Fumador -> Si fuma (respuesta verdadera o falso, ósea un valor booleano)
         #Consumo_agua-> Consumo de agua al día
-        #Consumo_calorias -> Seguimiento de consumo de calorías (tu consumo de calorías, 
-        con respuesta de si o no ósea un valor booleano
+        #Consumo_calorias -> Seguimiento de consumo de calorías (tu consumo de calorías, con respuesta de si 
+        o no ósea un valor booleano
         #F_actividad_fisica -> Frecuencia de actividad física
         #T_usos_dispositivos -> Tiempo de uso de dispositivos electrónicos
         #C_alcohol -> Si consume alcohol (no, algunas veces, frecuentemente o siempre)
-        #Medio_transporte -> Transporte utilizado (automóvil, motocicleta, bicicleta, 
-        transporte publicó, caminando)
-        #Tipo_obesidad -> Este valor se crea en base a los demás y consta de lo siguiente
-            (peso_insuficiente, peso_normal, sobrepeso_nivel1, sobrepeso_nivel2, 
-            obesidad_tipo1, obesidad_tipo2, obesidad_tipo3)"""
+        #Medio_transporte -> Transporte utilizado (automóvil, motocicleta, bicicleta, transporte publicó, caminando)
+        #Tipo_obesidad -> Este valor se crea en base a los demás y consta de lo siguiente (peso_insuficiente, peso_normal, 
+        sobrepeso_nivel1, sobrepeso_nivel2, obesidad_tipo1, obesidad_tipo2, obesidad_tipo3)"""
         col2.text(code)
         c2.title('')
 
