@@ -175,7 +175,7 @@ def main():
         mayores índices de riesgos para la salud, en el caso de la población menor de edad, la obesidad tipo I y II son más comunes, 
         donde la primera es más frecuente que la segunda.""")
 
-        co1, co2, co3 = st.columns([1,8,1])
+        co1, co2, co3 = st.columns([1,3,1])
         
         c2.subheader('')
         # tipo_trans_options = df['Medio_transporte'].unique().tolist()
@@ -192,7 +192,7 @@ def main():
         con sobre peso nivel 1 y la obesidad tipo 1. Por lo tanto , podemos decir que este no es un medio favorecedor en cuestión de 
         transporte para los ciudadanos que presentan cualquier tipo de obesidad o sobrepeso.""")
 
-        col1, col2, col3, col4 = st.columns([1,8,8,1])
+        col1, col2, col3, col4 = st.columns([1,5,5,1])
         col1.title('')
         col1.title('')
         col2.subheader('¿Cual es el promedio de litros de agua consumida por categorías de obesidad ?')
