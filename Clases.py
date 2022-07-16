@@ -6,7 +6,7 @@ import pandas as pd
 
 
 class InputModelo(BM):
-    
+
     Edad: int = Field( ge=0, le=120, description="Edad de la persona")
     Historial_familiar: Literal["Si", "No"]
     C_rico_calorias: Literal["Si", "No"]
@@ -38,8 +38,7 @@ class APIModelBackEnd:
     Clase que se encarga la parte de prediccion.
     """
     def __init__(
-        self, 
-        Genero, 
+        self,  
         Edad, 
         Historial_familiar,
         C_rico_calorias,
@@ -90,8 +89,6 @@ class APIModelBackEnd:
                 "N_comidas",
                 "F_actvidad_fisica",
                 "T_uso_dispositivos",
-                "Genero_Femenino",
-                "Genero_Masculino",
                 "Historial_familiar_No",
                 "Historial_familiar_Si",
                 "C_rico_calorias_No",
