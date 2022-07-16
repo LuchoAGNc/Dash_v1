@@ -3,3 +3,8 @@ pandas
 streamlit
 plotly
 fastapi
+pydantic
+typing
+uvicorn
+requests
+joblib
