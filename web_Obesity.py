@@ -46,8 +46,7 @@ def grafP(c2):
     fig.update_traces(hole=.4, hoverinfo="label+percent+name")
 
     fig.update_layout(
-        title_text="Relación entre el Peso y la Edad",
-    
+            
         annotations=[dict(text='', x=0.18, y=0.5, font_size=20, showarrow=False),
                     dict(text='', x=0.82, y=0.5, font_size=20, showarrow=False)])
     c2.write(fig)
@@ -112,7 +111,7 @@ def grafS(col2):
     fig2.add_trace(go.Bar(x=x, y=Moto, name='Moto',  marker_color='#FFC54D'))
     fig2.add_trace(go.Bar(x=x, y=Bicicleta, name='Bicicleta',  marker_color='#005F99'))
 
-    fig2.update_layout(title='Medio de Transporte Utilizado Segun su Peso',barmode='stack', xaxis={'categoryorder':'category ascending'})
+    fig2.update_layout(barmode='stack', xaxis={'categoryorder':'category ascending'})
     col2.write(fig2)
 
 
@@ -169,14 +168,13 @@ def main():
         c1, c2, c3 = st.columns([1,3,1])
         c2.title('Exploración - Niveles de obesidad en personas de México, Perú y Colombia.')
         c2.title('')
+        c2.subheader('Relación entre el Peso y la Edad')
         grafP(c2)
-        c2.write("""Su podría afirmar según la gráfica, que el tipo de peso que mayormente padecen las personas independientemente de 
+        c2.write("""Se podría afirmar según la gráfica, que el tipo de peso que mayormente padecen las personas independientemente de 
         cuál sea su edad, es el de obesidad. La moda para la población mayor de edad es obesidad tipo III, siendo la que tiene los 
         mayores índices de riesgos para la salud, en el caso de la población menor de edad, la obesidad tipo I y II son más comunes, 
         donde la primera es más frecuente que la segunda.""")
 
-        c2.title('')
-        c2.title('')
         cl1, cl2, cl3 = st.columns([1,4,1])
         c1, c2, c3, = st.columns([1,1,3])
         col1, col2, col4 = st.columns([1,3,1])
@@ -185,6 +183,7 @@ def main():
         c2.subheader('')
         # tipo_trans_options = df['Medio_transporte'].unique().tolist()
         # tipo_trans = c2.selectbox("Elija el tipo de transporte que desea visualizar", tipo_trans_options)
+        c2.subheader('Medio de Transporte Utilizado Segun su Peso')
         c2.subheader('')
         grafS(col2)
         co2.write("""Basados en los datos reportados através de las gráficas podemos concluir que un transporte usual como la bicicleta 
@@ -197,12 +196,10 @@ def main():
         con sobre peso nivel 1 y la obesidad tipo 1. Por lo tanto , podemos decir que este no es un medio favorecedor en cuestión de 
         transporte para los ciudadanos que presentan cualquier tipo de obesidad o sobrepeso.""")
 
-        cl1, cl2, cl3 = st.columns([1,4,1])
-        c1, c2, c3, = st.columns([1,1,3])
         col1, col2, col3, col4 = st.columns([1,8,8,1])
-        cl2.title('')
-        cl2.title('')
-        cl2.subheader('¿Cual es el promedio de litros de agua consumida por categorías de obesidad ?')
+        col1.title('')
+        col1.title('')
+        col2.subheader('¿Cual es el promedio de litros de agua consumida por categorías de obesidad ?')
         c2.subheader('')
         grafF(col2)
         # grafFi(col3)
