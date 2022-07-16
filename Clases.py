@@ -52,7 +52,6 @@ class APIModelBackEnd:
         C_alcohol,
         Medio_transporte
         ):
-        self.Genero = Genero
         self.Edad = Edad
         self.Historial_familiar = Historial_familiar
         self.C_rico_calorias = C_rico_calorias
@@ -65,10 +64,9 @@ class APIModelBackEnd:
         self.Medio_transporte = Medio_transporte
     
     def _load_model(self, model_filename: str = "random_m.pkl"):
-        self.model_filename = joblib.load(model_filename)
+        self.model = joblib.load(model_filename)
 
     def _preparar_datos(self):
-        Genero = self.Genero
         Edad = self.Edad
         Historial_familiar = self.Historial_familiar
         C_rico_calorias = self.C_rico_calorias
@@ -80,7 +78,6 @@ class APIModelBackEnd:
         C_alcohol = self.C_alcohol
         Medio_transporte = self.Medio_transporte
 
-        Generos = [0] * 2
         Historial_familiares = [0] * 2
         C_ricos_calorias = [0] * 2
         Consumos_calorias = [0] * 2
@@ -112,10 +109,10 @@ class APIModelBackEnd:
                 "Medio_transporte_Moto",
                 "Medio_transporte_Transporte_Publico",
             ],
-            data=[[Edad, F_Consumo_verduras, F_Consumo_verduras, T_uso_dispositivos, *Generos, *Historial_familiares, 
+            data=[[Edad, F_Consumo_verduras, F_Consumo_verduras, T_uso_dispositivos, *Historial_familiares, 
             *C_ricos_calorias, *Consumos_calorias, *C_alcoholes, *Medio_transportes]],
         )
-
+        
         data_predict[
             [
                 x
