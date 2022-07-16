@@ -12,6 +12,8 @@ class InputModelo(BM):
     C_rico_calorias: Literal["Si", "No"]
     F_Consumo_verduras: int = Field( ge=1, le=3, description="Frecuencia con la que come verduras")
     N_comidas: int = Field( ge=1, le=4, description="Numero de comidas consnumidas al dia")
+    Meriendas: Literal["No", "Algunas_veces", "Frecuentemente", "Siempre"]
+    Fumador: Literal["Si", "No"]
     F_actvidad_fisica: float = Field( ge=0, le=3, description="Frecuencia con la que realiza actividad fisica")
     T_uso_dispositivos: float = Field(ge=0, le=3, description="Tiempo de uso de dispositivo elctronicos")
     Consumo_calorias: Literal["Si", "No"]
