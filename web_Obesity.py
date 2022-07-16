@@ -52,7 +52,7 @@ def grafP(c2):
     c2.write(fig)
 
 
-def grafS(col2):
+def grafS(co2):
 
     Transporte_Publico = [
         len(df[(df.Tipo_obesidad == "Peso_normal") & (df.Medio_transporte == "Transporte_Publico")]),
@@ -112,7 +112,7 @@ def grafS(col2):
     fig2.add_trace(go.Bar(x=x, y=Bicicleta, name='Bicicleta',  marker_color='#005F99'))
 
     fig2.update_layout(barmode='stack', xaxis={'categoryorder':'category ascending'})
-    col2.write(fig2)
+    co2.write(fig2)
 
 
 def grafF(col2):
@@ -181,7 +181,7 @@ def main():
         # tipo_trans_options = df['Medio_transporte'].unique().tolist()
         # tipo_trans = c2.selectbox("Elija el tipo de transporte que desea visualizar", tipo_trans_options)
         co2.subheader('Medio de Transporte Utilizado Segun su Peso')
-        grafS(col2)
+        grafS(co2)
         co2.write("""Basados en los datos reportados através de las gráficas podemos concluir que un transporte usual como la bicicleta 
         de las personas registradas utilizan(51.7%) poseen un peso normal  y el resto de los datos distribuidos entre las personas 
         con obesidad tipo 2 y sobre peso nivel 1. En cambio si observamos la gráfica de las personas que caminan y como se relaciona con su peso el porcentaje 
