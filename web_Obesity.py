@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import requests
@@ -30,7 +29,7 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
 
     data_cleaned = str(request_data).replace("'", '"')
 
-    url_api = "https://luchoagnc-dash-v1-web-obesity-qbmxz0.streamlitapp.com/predict"
+    url_api = "https://luchoagnc-dash-v1-api-hlvc14.streamlitapp.com/predict"
 
     pred = requests.post(url=url_api, data=data_cleaned).text
 
