@@ -250,8 +250,8 @@ def main():
         if boton_predecir:
             prediccion = hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_Consumo_verduras, N_comidad,
             F_actividad_fisicas, Consumo_calorias_, T_dispositivos, C_Alcohol, Medio_transporte)
-            st.metric(value=f'{prediccion["Tipo_obesidad"][0]*100}%', label = 'Probabilidad de Renuncia del Empleado')
-            st.balloons()
+
+            st.subheader("El pronóstico de casos de su  tipo de obesidad es : {}".format(round(prediccion['cantidad_violentados'])))
 
     elif choice == 'About':
         cl1, cl2, cl3 = st.columns([1,4,1])
