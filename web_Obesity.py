@@ -169,25 +169,24 @@ def main():
         c1, c2, c3 = st.columns([1,3,1])
         c2.title('Exploración - Niveles de obesidad en personas de México, Perú y Colombia.')
         c2.title('')
-        c2.subheader('Tipo de peso que padece una persona teniendo presente si es mayor o menor de edad.')
         grafP(c2)
-        c2.write("""Si es menor de edad es muy probable que el menor tenga peso insuficiente o se encuentre en su peso normal, 
-        pero para el caso donde las personas son mayores de edad existe mayor probabilidad de sufrir de obesidad ya sea tipo I, II o III.""")
+        c2.write("""Su podría afirmar según la gráfica, que el tipo de peso que mayormente padecen las personas independientemente de 
+        cuál sea su edad, es el de obesidad. La moda para la población mayor de edad es obesidad tipo III, siendo la que tiene los 
+        mayores índices de riesgos para la salud, en el caso de la población menor de edad, la obesidad tipo I y II son más comunes, 
+        donde la primera es más frecuente que la segunda.""")
 
         c2.title('')
         c2.title('')
         cl1, cl2, cl3 = st.columns([1,4,1])
         c1, c2, c3, = st.columns([1,1,3])
-        col1, col2, col3, col4 = st.columns([1,4,5,1])
+        col1, col2, col4 = st.columns([1,3,1])
         co1, co2, co3 = st.columns([1,8,1])
         
-        cl2.subheader('Relación entre los medios de trasnposte utilizados por las personas y el tipo de peso que reportan.')
         c2.subheader('')
-        tipo_trans_options = df['Medio_transporte'].unique().tolist()
-        tipo_trans = c2.selectbox("Elija el tipo de transporte que desea visualizar", tipo_trans_options)
+        # tipo_trans_options = df['Medio_transporte'].unique().tolist()
+        # tipo_trans = c2.selectbox("Elija el tipo de transporte que desea visualizar", tipo_trans_options)
         c2.subheader('')
         grafS(col2)
-        # grafT(col3)
         co2.write("""Basados en los datos reportados através de las gráficas podemos concluir que un transporte usual como la bicicleta 
         de las personas registradas utilizan(51.7%) poseen un peso normal  y el resto de los datos distribuidos entre las personas 
         con obesidad tipo 2 y sobre peso nivel 1. En cambio si observamos la gráfica de las personas que caminan y como se relaciona con su peso el porcentaje 
@@ -203,7 +202,7 @@ def main():
         col1, col2, col3, col4 = st.columns([1,8,8,1])
         cl2.title('')
         cl2.title('')
-        cl2.subheader('¿Como influye en el peso de una persona el hecho de tomar o no agua y realizar actividades físicas?')
+        cl2.subheader('¿Cual es el promedio de litros de agua consumida por categorías de obesidad ?')
         c2.subheader('')
         grafF(col2)
         # grafFi(col3)
