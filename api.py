@@ -9,7 +9,7 @@ app = FastAPI(title="API Grupo 5", version="1.0.0")
 """Objeto FastAPI usado para el deployment de la API :)"""
 
 
-@app.get("/predict", response_model=List[OutputModelo])
+@app.post("/predict", response_model=List[OutputModelo])
 async def predict_proba(inputs: List[InputModelo]):
     """Endpoint de predicción de la API"""
 
