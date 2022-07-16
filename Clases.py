@@ -40,17 +40,17 @@ class APIModelBackEnd:
     """
     def __init__(
         self, 
-        Genero: str, 
-        Edad: int, 
-        Historial_familiar: str,
-        C_rico_calorias: str,
-        F_Consumo_verduras: int,
-        N_comidas: int,
-        F_actvidad_fisica: float,
-        T_uso_dispositivos: float,
-        Consumo_calorias: str,
-        C_alcohol: str,
-        Medio_transporte: str
+        Genero, 
+        Edad, 
+        Historial_familiar,
+        C_rico_calorias,
+        F_Consumo_verduras,
+        N_comidas,
+        F_actvidad_fisica,
+        T_uso_dispositivos,
+        Consumo_calorias,
+        C_alcohol,
+        Medio_transporte
         ):
         self.Genero = Genero
         self.Edad = Edad
@@ -122,38 +122,56 @@ class APIModelBackEnd:
                 for x in data_predict.columns
                 if ((str(Historial_familiar) in x) and (x.startswith("Historial_familiar_")))
             ],
+        ] = 1
+
+        data_predict[
             [
                 x
                 for x in data_predict.columns
                 if ((str(C_rico_calorias) in x) and (x.startswith("C_rico_calorias_")))
-            ],
+            ]
+        ] = 1
+
+        data_predict[
             [
                 x
                 for x in data_predict.columns
                 if ((str(N_comidas) in x) and (x.startswith("N_comidas_")))
-            ],
+            ]
+        ] = 1
+
+        data_predict[
             [
                 x
                 for x in data_predict.columns
                 if ((str(F_actividad_fisica) in x) and (x.startswith("F_actividad_fisica_")))
-            ],
+            ]
+        ] = 1
+
+        data_predict[
             [
                 x
                 for x in data_predict.columns
                 if ((str(Consumo_calorias) in x) and (x.startswith("Consumo_calorias_")))
-            ],
+            ]
+        ] = 1
+
+        data_predict[
             [
                 x
                 for x in data_predict.columns
                 if ((str(C_alcohol) in x) and (x.startswith("C_alcohol")))
-            ],
+            ]
+        ] = 1
+        
+        data_predict[
             [
                 x
                 for x in data_predict.columns
                 if ((str(Medio_transporte) in x) and (x.startswith("Medio_transporte")))
-            ],
+            ]
         ] = 1
-
+        
         return data_predict
 
     def predecir(self, y_name="Tipo_obesidad"):
