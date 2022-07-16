@@ -196,7 +196,6 @@ def main():
         col1.title('')
         col1.title('')
         col2.subheader('¿Cual es el promedio de litros de agua consumida por categorías de obesidad ?')
-        c2.subheader('')
         grafF(col2)
         # grafFi(col3)
 
