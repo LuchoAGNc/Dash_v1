@@ -212,6 +212,8 @@ def main():
             el consumo de agua siempre se mantiene en promedio de uno y dos que es lo normal que debe consumir una persona, osea que el el consumo 
             de agua no afecta la disminución 
             o el aumento de masa""")
+        
+        
         col3.subheader('Relación Obesidad - Actividad Física')
         grafFi(col3)
         col3.write("""
