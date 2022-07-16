@@ -18,8 +18,8 @@ async def predict_proba(inputs: List[InputModelo]):
     for Input in inputs:
 
         model = APIModelBackEnd(
-            Input.Edad, Input.Historial_familiar, Input.C_rico_calorias, 
-            Input.F_Consumo_verduras, Input.N_comidas,
+            Input.Genero, Input.Edad, Input.Historial_familiar, Input.C_rico_calorias, 
+            Input.F_Consumo_verduras, Input.N_comidas, Input.Merienda, Input.Fumador,
             Input.F_actvidad_fisica, Input.T_uso_dispositivos, Input.Consumo_calorias, Input.C_alcohol, Input.Medio_transporte
         )
         response.append(model.predecir()[0])

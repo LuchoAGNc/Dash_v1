@@ -6,7 +6,7 @@ import pandas as pd
 
 
 class InputModelo(BM):
-
+    Genero: Literal ['Femenino', 'Masculino']
     Edad: int = Field( ge=0, le=120, description="Edad de la persona")
     Historial_familiar: Literal["Si", "No"]
     C_rico_calorias: Literal["Si", "No"]
@@ -38,23 +38,29 @@ class APIModelBackEnd:
     Clase que se encarga la parte de prediccion.
     """
     def __init__(
-        self,  
+        self,
+        Genero,
         Edad, 
         Historial_familiar,
         C_rico_calorias,
         F_Consumo_verduras,
         N_comidas,
+        Meriendas,
+        Fumador,
         F_actvidad_fisica,
         T_uso_dispositivos,
         Consumo_calorias,
         C_alcohol,
         Medio_transporte
         ):
+        self.Genero = Genero
         self.Edad = Edad
         self.Historial_familiar = Historial_familiar
         self.C_rico_calorias = C_rico_calorias
         self.F_Consumo_verduras = F_Consumo_verduras
         self.N_comidas = N_comidas
+        self.Meriendas = Meriendas
+        self.Fumador = Fumador
         self.F_actividad_fisica = F_actvidad_fisica
         self.T_uso_dispositivos = T_uso_dispositivos
         self.Consumo_calorias = Consumo_calorias
@@ -65,19 +71,25 @@ class APIModelBackEnd:
         self.model = joblib.load(model_filename)
 
     def _preparar_datos(self):
+        Genero = self.Genero
         Edad = self.Edad
         Historial_familiar = self.Historial_familiar
         C_rico_calorias = self.C_rico_calorias
         F_Consumo_verduras = self.F_Consumo_verduras
         N_comidas = self.N_comidas
+        Meriendas = self.Meriendas
+        Fumador = self.Fumador
         F_actividad_fisica = self.F_actividad_fisica
         T_uso_dispositivos = self.T_uso_dispositivos
         Consumo_calorias = self.Consumo_calorias
         C_alcohol = self.C_alcohol
         Medio_transporte = self.Medio_transporte
 
+        Generos = [0] * 2
         Historial_familiares = [0] * 2
         C_ricos_calorias = [0] * 2
+        Meriendass = [0] * 4
+        Fumadors = [0] * 2
         Consumos_calorias = [0] * 2
         C_alcoholes = [0] * 4
         Medio_transportes = [0] * 5
@@ -89,10 +101,18 @@ class APIModelBackEnd:
                 "N_comidas",
                 "F_actvidad_fisica",
                 "T_uso_dispositivos",
+                "Genero_Femenino",
+                "Genero_Masculino"
                 "Historial_familiar_No",
                 "Historial_familiar_Si",
                 "C_rico_calorias_No",
                 "C_rico_calorias_Si",
+                "Meriendas_Algunas_veces",
+                "Meriendas_Frecuentemente",
+                "Meriendas_No",
+                "Meriendas_Siempre",
+                "Fumador_No",
+                "Fumador_Si",
                 "Consumo_calorias_No",
                 "Consumo_calorias_Si",
                 "C_alcohol_Algunas_veces",
@@ -105,10 +125,19 @@ class APIModelBackEnd:
                 "Medio_transporte_Moto",
                 "Medio_transporte_Transporte_Publico",
             ],
-            data=[[Edad, F_Consumo_verduras, F_Consumo_verduras, T_uso_dispositivos, *Historial_familiares, 
-            *C_ricos_calorias, *Consumos_calorias, *C_alcoholes, *Medio_transportes]],
+            data=[[Edad, F_Consumo_verduras, F_Consumo_verduras, T_uso_dispositivos, *Generos, *Historial_familiares, 
+            *C_ricos_calorias, *Meriendass, *Fumadors, *Consumos_calorias, *C_alcoholes, *Medio_transportes]],
         )
         
+        data_predict[
+            [
+                x
+                for x in data_predict.columns
+                if ((str(Genero) in x) and (x.startswith("Genero_")))
+            ],
+        ] = 1
+
+
         data_predict[
             [
                 x
@@ -129,7 +158,7 @@ class APIModelBackEnd:
             [
                 x
                 for x in data_predict.columns
-                if ((str(N_comidas) in x) and (x.startswith("N_comidas_")))
+                if ((str(N_comidas) in x) and (x.startswith("Meriendas_")))
             ]
         ] = 1
 
@@ -137,7 +166,7 @@ class APIModelBackEnd:
             [
                 x
                 for x in data_predict.columns
-                if ((str(F_actividad_fisica) in x) and (x.startswith("F_actividad_fisica_")))
+                if ((str(F_actividad_fisica) in x) and (x.startswith("Fumador_")))
             ]
         ] = 1
 

@@ -14,14 +14,16 @@ def data_up():
 st.set_page_config(page_title='Niveles de obesidad en personas', layout='wide')
 df = data_up()
 
-def hacer_request_api(Edad_, Historial_familiar_, C_rico_calorias_, F_Consumo_verduras, N_comidad,
+def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_Consumo_verduras, N_comidad, Meriendas_, Fumador_,
             F_actividad_fisicas, Consumo_calorias_, T_dispositivos, C_Alcohol, Medio_transporte):
-    request_data = [{
+    request_data = [{"Genero": Genero_,
                      "Edad": Edad_,
                      "Historial_familiar": Historial_familiar_,
                      "C_rico_calorias": C_rico_calorias_,
                      "F_Consumo_verduras": F_Consumo_verduras,
                      "N_comidas": N_comidad,
+                     "Meriendas": Meriendas_,
+                     "Fumador": Fumador_,
                      "F_actvidad_fisica": F_actividad_fisicas,
                      "Consumo_calorias": Consumo_calorias_,
                      "T_uso_dispositivos": T_dispositivos,
@@ -230,25 +232,35 @@ def main():
         cl2.subheader("Ingrese los datos para realizar la prediccion de su tipo de peso:")
         cl2.title('')
         c1, c2, c3, c4 , c5, c6 = st.columns([1,2,2,2,2,1])
-        Edad_ =c2.slider("Edad:", min_value=5, max_value=120)
+        tipo_Genero_options = df['Genero'].unique().tolist()
+        Genero_ = c2.selectbox("Genero: ", tipo_Genero_options)
+        Edad_ =c3.slider("Edad:", min_value=5, max_value=120)
         tipo_Historial_familiar_options = df['Historial_familiar'].unique().tolist()
-        Historial_familiar_ = c3.selectbox("Familiar con sobrepeso ?", tipo_Historial_familiar_options)
+        Historial_familiar_ = c4.selectbox("Familiar con sobrepeso ?", tipo_Historial_familiar_options)
         tipo_C_rico_calorias_options = df['C_rico_calorias'].unique().tolist()
-        C_rico_calorias_ = c4.selectbox("Consume alimentos ricos en calorias?", tipo_C_rico_calorias_options)
-        F_Consumo_verduras = c5.slider("Frecuencia en concumo de verduras:", min_value=1, max_value=3)
-        N_comidad = c2.slider("Numero de comidas", min_value=1, max_value=8)
-        F_actividad_fisicas = c3.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
+        C_rico_calorias_ = c5.selectbox("Consume alimentos ricos en calorias?", tipo_C_rico_calorias_options)
+        F_Consumo_verduras = c2.slider("Frecuencia en concumo de verduras:", min_value=1, max_value=3)
+        N_comidad = c3.slider("Numero de comidas", min_value=1, max_value=8)
+
+        tipo_Meriendas_options = df['Meriendas'].unique().tolist()
+        Meriendas_ = c4.selectbox("Merienda ?", tipo_Meriendas_options)
+        tipo_Fumador_options = df['Fumador'].unique().tolist()
+        Fumador_ = c5.selectbox("Fuma ?", tipo_Fumador_options)
+
+
+        F_actividad_fisicas = c2.slider("Frecuencia en actividades Fisicas", min_value=0, max_value=4)
         tipo_Consumo_calorias_options = df['Consumo_calorias'].unique().tolist()
-        Consumo_calorias_ = c4.selectbox("Sigues tu consumo de calorias?", tipo_Consumo_calorias_options)
-        T_dispositivos = c5.slider("Tiempo de uso en dispositivos electronicos", min_value=0, max_value=3)
+        Consumo_calorias_ = c3.selectbox("Sigues tu consumo de calorias?", tipo_Consumo_calorias_options)
+        T_dispositivos = c4.slider("Tiempo de uso en dispositivos electronicos", min_value=0, max_value=3)
         tipo_C_alcohol_options = df['C_alcohol'].unique().tolist()
-        C_Alcohol = c2.selectbox("Consume alcohol ?", tipo_C_alcohol_options)
+        C_Alcohol = c5.selectbox("Consume alcohol ?", tipo_C_alcohol_options)
         tipo_Medio_transporte_options = df['Medio_transporte'].unique().tolist()
-        Medio_transporte = c3.selectbox("Que medio de transporte usa?", tipo_Medio_transporte_options)
+        Medio_transporte = c2.selectbox("Que medio de transporte usa?", tipo_Medio_transporte_options)
         boton_predecir = c2.button('Predecir')
 
         if boton_predecir:
-            prediccion = hacer_request_api(Edad_, Historial_familiar_, C_rico_calorias_, F_Consumo_verduras, N_comidad,
+            prediccion = hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_Consumo_verduras, N_comidad,
+            Meriendas_, Fumador_,
             F_actividad_fisicas, Consumo_calorias_, T_dispositivos, C_Alcohol, Medio_transporte)
 
             st.subheader(prediccion)
