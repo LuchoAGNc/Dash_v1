@@ -173,23 +173,21 @@ def main():
         col2.subheader('Datos registrados en el Dataframe')
         col2.write(df)
         code = """#Genero -> genero
-            #Edad -> edad
-            #Historial_familiar -> si los familiares sufren de sobre peso (es un valor booleano ósea verdadero o
-            falso)
-            #C_rico_calorias -> Consumo frecuente de alimentos ricos en calorías
-            #F_Consumo_verdura -> Frecuencia de consumo de verduras
-            #N_comidas -> Número de comidas principales o número de comida al día
-            #Meriendas -> Consumo de alimentos entre comidas.
-            #Fumador -> si fuma (respuesta verdadera o falso, ósea un valor booleano)
-            #Consumo_agua-> consumo de agua al día
-            #Consumo_calorias -> seguimiento de consumo de calorías (tu consumo de calorías, con respuesta
-            de si o no ósea un valor booleano
-            #F_actividad_fisica -> frecuencia de actividad física
-            #T_usos_dispositivos -> tiempo de uso de dispositivos electrónicos
-            #C_alcohol -> si consume alcohol (no, algunas veces, frecuentemente o siempre)
-            #Medio_transporte -> transporte utilizado (automóvil, motocicleta, bicicleta, transporte publicó,
-            caminando)
-            #Tipo_obesidad -> este valor se crea en base a los demás y consta de lo siguiente
+        #Edad -> edad
+        #Historial_familiar -> si los familiares sufren de sobre peso (es un valor booleano ósea verdadero o falso)
+        #C_rico_calorias -> Consumo frecuente de alimentos ricos en calorías
+        #F_Consumo_verdura -> Frecuencia de consumo de verduras
+        #N_comidas -> Número de comidas principales o número de comida al día
+        #Meriendas -> Consumo de alimentos entre comidas.
+        #Fumador -> si fuma (respuesta verdadera o falso, ósea un valor booleano)
+        #Consumo_agua-> consumo de agua al día
+        #Consumo_calorias -> seguimiento de consumo de calorías (tu consumo de calorías, con respuesta
+        de si o no ósea un valor booleano
+        #F_actividad_fisica -> frecuencia de actividad física
+        #T_usos_dispositivos -> tiempo de uso de dispositivos electrónicos
+        #C_alcohol -> si consume alcohol (no, algunas veces, frecuentemente o siempre)
+        #Medio_transporte -> transporte utilizado (automóvil, motocicleta, bicicleta, transporte publicó, caminando)
+        #Tipo_obesidad -> este valor se crea en base a los demás y consta de lo siguiente
             (peso_insuficiente, peso_normal, sobrepeso_nivel1, sobrepeso_nivel2, obesidad_tipo1, obesidad_tipo2, obesidad_tipo3)"""
         col2.code(code, language='python')
         c2.title('')
