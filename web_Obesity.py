@@ -32,7 +32,7 @@ def hacer_request_api(Genero_, Edad_, Historial_familiar_, C_rico_calorias_, F_C
     url_api = "https://team5-diplo.herokuapp.com/predict"
 
     pred = requests.post(url=url_api, data=data_cleaned).text
-    pred_df = pd.read_json(pred)
+    pred_df = pred
     return pred_df
 
 def grafP(c2):
