@@ -1,1 +1,1 @@
-web: sh setup.sh && python api.py && streamlit run app.py
+web: sh setup.sh && python api.py && streamlit run web_Obesity.py
