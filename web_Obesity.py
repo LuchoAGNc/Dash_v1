@@ -14,16 +14,42 @@ st.set_page_config(page_title='Niveles de obesidad en personas', layout='wide')
 df = data_up()
 
 def grafP(c2):
+    menores =  [
+        len(df[(df.Tipo_obesidad == "Peso_normal") & (df.Edad < 18)]),
+        len(df[(df.Tipo_obesidad == "Sobrepeso_Nivel_I") & (df.Edad < 18)]),
+        len(df[(df.Tipo_obesidad == "Sobrepeso_Nivel_II") & (df.Edad < 18)]),
+        len(df[(df.Tipo_obesidad == "Obesidad_Tipo_I") & (df.Edad < 18)]),
+        len(df[(df.Tipo_obesidad == "Obesidad_Tipo_II") & (df.Edad < 18)]),
+        len(df[(df.Tipo_obesidad == "Obesidad_Tipo_III") & (df.Edad < 18)]),
+        len(df[(df.Tipo_obesidad == "Peso_insuficiente") & (df.Edad < 18)]),
+    ]
 
-    df_mayores = df[df['Edad']>=18]
-    df_menores = df[df['Edad']<18]
+    mayores =  [
+        len(df[(df.Tipo_obesidad == "Peso_normal") & (df.Edad >= 18)]),
+        len(df[(df.Tipo_obesidad == "Sobrepeso_Nivel_I") & (df.Edad >= 18)]),
+        len(df[(df.Tipo_obesidad == "Sobrepeso_Nivel_II") & (df.Edad >= 18)]),
+        len(df[(df.Tipo_obesidad == "Obesidad_Tipo_I") & (df.Edad >= 18)]),
+        len(df[(df.Tipo_obesidad == "Obesidad_Tipo_II") & (df.Edad >= 18)]),
+        len(df[(df.Tipo_obesidad == "Obesidad_Tipo_III") & (df.Edad >= 18)]),
+        len(df[(df.Tipo_obesidad == "Peso_insuficiente") & (df.Edad >= 18)]),
+    ]
 
-    df_menores.insert(3,"Mayor_edad",'menor',True)
-    df_mayores.insert(3,"Mayor_edad",'mayor',True)
+    labels =list(df.Tipo_obesidad.unique())
 
-    df_G = pd.concat([df_mayores, df_menores], axis=0)
+    night_colors = ['#53BF9D', '#F94C66', '#BD4291', '#FFC54D', '#005F99', '#FFF5B7', '#3AB4F2']
+
+    fig = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}]])
+    fig.add_trace(go.Pie(labels=labels, values=mayores, name="Mayor Edad", marker_colors=night_colors), 1, 1)
+    fig.add_trace(go.Pie(labels=labels, values=menores, name="Menor Edad", marker_colors=night_colors), 1, 2)
+
+
+    fig.update_traces(hole=.4, hoverinfo="label+percent+name")
+
+    fig.update_layout(
+        title_text="Relación entre el Peso y la Edad",
     
-    fig = px.bar(df_G, x="Tipo_obesidad", y="T_uso_dispositivos", color="Mayor_edad", barmode = 'stack', color_discrete_map={'mayor':'#53BF9D', 'menor':'#F94C66'})
+        annotations=[dict(text='', x=0.18, y=0.5, font_size=20, showarrow=False),
+                    dict(text='', x=0.82, y=0.5, font_size=20, showarrow=False)])
     c2.write(fig)
 
 
@@ -88,88 +114,6 @@ def grafS(col2):
 
     fig2.update_layout(title='Medio de Transporte Utilizado Segun su Peso',barmode='stack', xaxis={'categoryorder':'category ascending'})
     col2.write(fig2)
-
-# def grafT(col3):
-
-#     grupos = list(df['Tipo_obesidad'].unique())
-
-#     insuficiente = df[df['Tipo_obesidad'] == 'Peso_insuficiente']
-#     normal = df[df['Tipo_obesidad'] == 'Peso_normal']
-#     sobre_p1 = df[df['Tipo_obesidad'] == 'Sobrepeso_Nivel_I']
-#     sobre_p2 = df[df['Tipo_obesidad'] == 'Sobrepeso_Nivel_II']
-#     obesidad1 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_I']
-#     obesidad2 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_II']
-#     obesidad3 = df[df['Tipo_obesidad'] == 'Obesidad_Tipo_III']
-
-#     Bike= [
-#         len(normal[normal['Medio_transporte']=='Bike']),
-#         len(sobre_p1[sobre_p1['Medio_transporte']=='Bike']),
-#         len(sobre_p2[sobre_p2['Medio_transporte']=='Bike']),
-#         len(obesidad1[obesidad1['Medio_transporte']=='Bike']),
-#         len(insuficiente[insuficiente['Medio_transporte']=='Bike']),
-#         len(obesidad2[obesidad2['Medio_transporte']=='Bike']),
-#         len(obesidad3[obesidad3['Medio_transporte']=='Bike'])
-#     ]
-
-#     Walking= [
-#         len(normal[normal['Medio_transporte']=='Walking']),
-#         len(sobre_p1[sobre_p1['Medio_transporte']=='Walking']),
-#         len(sobre_p2[sobre_p2['Medio_transporte']=='Walking']),
-#         len(obesidad1[obesidad1['Medio_transporte']=='Walking']),
-#         len(insuficiente[insuficiente['Medio_transporte']=='Walking']),
-#         len(obesidad2[obesidad2['Medio_transporte']=='Walking']),
-#         len(obesidad3[obesidad3['Medio_transporte']=='Walking'])
-#     ]
-
-#     Automobile= [
-#         len(normal[normal['Medio_transporte']=='Automobile']),
-#         len(sobre_p1[sobre_p1['Medio_transporte']=='Automobile']),
-#         len(sobre_p2[sobre_p2['Medio_transporte']=='Automobile']),
-#         len(obesidad1[obesidad1['Medio_transporte']=='Automobile']),
-#         len(insuficiente[insuficiente['Medio_transporte']=='Automobile']),
-#         len(obesidad2[obesidad2['Medio_transporte']=='Automobile']),
-#         len(obesidad3[obesidad3['Medio_transporte']=='Automobile'])
-#     ]
-
-#     Motorbike= [
-#         len(normal[normal['Medio_transporte']=='Motorbike']),
-#         len(sobre_p1[sobre_p1['Medio_transporte']=='Motorbike']),
-#         len(sobre_p2[sobre_p2['Medio_transporte']=='Motorbike']),
-#         len(obesidad1[obesidad1['Medio_transporte']=='Motorbike']),
-#         len(insuficiente[insuficiente['Medio_transporte']=='Motorbike']),
-#         len(obesidad2[obesidad2['Medio_transporte']=='Motorbike']),
-#         len(obesidad3[obesidad3['Medio_transporte']=='Motorbike'])
-#     ]
-
-#     Public_Transportation= [
-#         len(normal[normal['Medio_transporte']=='Public_Transportation']),
-#         len(sobre_p1[sobre_p1['Medio_transporte']=='Public_Transportation']),
-#         len(sobre_p2[sobre_p2['Medio_transporte']=='Public_Transportation']),
-#         len(obesidad1[obesidad1['Medio_transporte']=='Public_Transportation']),
-#         len(insuficiente[insuficiente['Medio_transporte']=='Public_Transportation']),
-#         len(obesidad2[obesidad2['Medio_transporte']=='Public_Transportation']),
-#         len(obesidad3[obesidad3['Medio_transporte']=='Public_Transportation'])
-#     ]
-
-#     indice = np.arange(len(grupos))
-#     fig6, ax = plt.subplots(figsize=(14,8))
-
-#     ax.bar(indice, Motorbike, label='Moto', color="#5499C7")
-    
-#     ax.bar(indice, Bike, label='Bicicleta', color = "#3498DB", bottom=np.array(Motorbike))
-
-#     ax.bar(indice, Walking, label='Caminata', color = "#1ABC9C", bottom=np.array(Bike))
-
-#     ax.bar(indice, Automobile, label='Automovil', color = "#27AE60",  bottom=np.array(Walking))
-
-#     ax.bar(indice, Public_Transportation, label='Transporte Publico', color = "#138D75", bottom=np.array(Motorbike)+np.array(Bike)+np.array(Walking)+np.array(Automobile))
-
-#     plt.xticks(indice, grupos)
-#     plt.ylabel("Medio de transporte")
-#     plt.xlabel("Tipo de obesidad")
-#     plt.title('Cantidad de Personas que Utilizan un Determinado Medio de Transporte')
-#     ax.legend()
-#     col3.pyplot(fig6)
 
 
 def grafF(col2):
