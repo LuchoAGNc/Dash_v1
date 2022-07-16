@@ -172,8 +172,7 @@ def main():
         col1, col2, col3 = st.columns([1,5,1])
         col2.subheader('Datos registrados en el Dataframe')
         col2.write(df)
-        code = """
-            #Genero -> genero
+        code = """#Genero -> genero
             #Edad -> edad
             #Historial_familiar -> si los familiares sufren de sobre peso (es un valor booleano ósea verdadero o
             falso)
@@ -191,8 +190,7 @@ def main():
             #Medio_transporte -> transporte utilizado (automóvil, motocicleta, bicicleta, transporte publicó,
             caminando)
             #Tipo_obesidad -> este valor se crea en base a los demás y consta de lo siguiente
-            (peso_insuficiente, peso_normal, sobrepeso_nivel1, sobrepeso_nivel2, obesidad_tipo1,
-            obesidad_tipo2, obesidad_tipo3)"""
+            (peso_insuficiente, peso_normal, sobrepeso_nivel1, sobrepeso_nivel2, obesidad_tipo1, obesidad_tipo2, obesidad_tipo3)"""
         col2.code(code, language='python')
         c2.title('')
 
