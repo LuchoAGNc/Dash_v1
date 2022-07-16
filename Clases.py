@@ -6,8 +6,7 @@ import pandas as pd
 
 
 class InputModelo(BM):
-        
-    Genero: Literal["Femenino", "Masculino"]
+    
     Edad: int = Field( ge=0, le=120, description="Edad de la persona")
     Historial_familiar: Literal["Si", "No"]
     C_rico_calorias: Literal["Si", "No"]
